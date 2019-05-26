@@ -19,6 +19,12 @@ def main():
 		color = input("Enter your color(B/R): ")
 		row = input("Enter a row: ")
 		col = input("Enter a col: ")
+
+		while A[int(row)-1][int(col)-1] != color:
+			print("Wrong position... try again")
+			row = input("Enter a row: ")
+			col = input("Enter a col: ")
+			
 		A[int(row)-1][int(col)-1] = 'X'
 	else:
 		pass
