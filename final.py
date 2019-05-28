@@ -3,8 +3,6 @@ import sys
 import random
 
 A = list()
-listOfStrings = ['Hello'] * 10
-
 def printResult():
 	#see the result
 	for i in A:
@@ -15,19 +13,19 @@ def printResult():
 def main():
 	# print (sys.argv[1])
 	with open(sys.argv[1], 'r') as f:
-		next(f)	#跳過第一行:size
-		# data = f.read()
-		# print(data)
+		size = int(f.readline())
+		
 		for line in f:
 			data = list()
 			for alphabet in line.split(" "):
 				data.append(alphabet[0])
 			A.append(data)
-
+		printResult()
+		# print(A)
 	firstorNot = input("User go first or not(Y/N):")
 	if firstorNot == 'Y':
 		color = input("Enter your color(B/R): ")
-		while all(elem != ['X','X','X','X'] for elem in A):
+		while A != [['X'] * size] * size:
 			row = input("Enter a row: ")
 			col = input("Enter a col: ")
 
@@ -51,12 +49,12 @@ def main():
 			#右：檢查右上下 A[int(row)-1][int(col)]
 
 
-			AIrow = random.randint(1,4)
-			AIcol = random.randint(1,4)
+			AIrow = random.randint(1,size)
+			AIcol = random.randint(1,size)
 			
 			while(A[int(AIrow)-1][int(AIcol)-1] == 'X' or A[int(AIrow)-1][int(AIcol)-1] == color):
-				AIrow = random.randint(1,4)
-				AIcol = random.randint(1,4)
+				AIrow = random.randint(1,size)
+				AIcol = random.randint(1,size)
 
 			print("AI Enter a row: " , AIrow)
 			print("AI Enter a col: " , AIcol)
@@ -74,8 +72,6 @@ def main():
 	else:
 		pass
 
-
-	
 
 if __name__ == "__main__":
 	main()
